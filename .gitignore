@@ -1,0 +1,57 @@
+# Go specific
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+
+# Go build and test cache
+/bin/
+/pkg/
+.cache/
+
+# MongoDB specific
+*.mongo
+*.mongodb
+mongod.lock
+mongodb.log
+/data/db/
+
+# IDE specific (GoLand)
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment and configuration
+*.env
+.env.local
+.env.*.local
+config.local.yaml
+
+# Dependency directories
+/vendor/
+
+# Debug logs
+*.log
+debug/
+
+# Binary files
+/build/
+/dist/
+
+# Test coverage
+coverage.txt
+coverage.html
