@@ -10,7 +10,7 @@ import (
 
 var BookCollection *mongo.Collection
 
-func Connect() {
+func Connect() *mongo.Collection {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
@@ -26,7 +26,8 @@ func Connect() {
 		log.Fatal("MongoDB connection error:", err)
 	}
 
-	BookCollection = client.Database("books").Collection("books")
-
 	log.Println("Connected to MongoDB")
+
+	return client.Database("library").Collection("books")
+
 }

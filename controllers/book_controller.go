@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/gin-gonic/gin"
 	"github.com/theguitarvity/go-book-api/database"
-	"github.com/theguitarvity/go-book-api/models"
+	"github.com/theguitarvity/go-book-api/internal/domain/entities"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"net/http"
@@ -24,7 +24,7 @@ func GetBooks(ginCtx *gin.Context) {
 	}
 	defer cursor.Close(ctx)
 
-	var books []models.Book
+	var books []entities.Book
 
 	if err := cursor.All(ctx, &books); err != nil {
 		ginCtx.JSON(http.StatusInternalServerError, gin.H{"error": "Error on parsing books"})
@@ -35,7 +35,7 @@ func GetBooks(ginCtx *gin.Context) {
 }
 
 func CreateBook(ginCtx *gin.Context) {
-	var book models.Book
+	var book entities.Book
 
 	if err := ginCtx.ShouldBindJSON(&book); err != nil {
 		ginCtx.JSON(http.StatusBadRequest, gin.H{"error": "Failed to create book"})
@@ -61,7 +61,7 @@ func UpdateBook(ginCtx *gin.Context) {
 		ginCtx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid Book ID"})
 		return
 	}
-	var book models.Book
+	var book entities.Book
 	if err := ginCtx.ShouldBindJSON(&book); err != nil {
 		ginCtx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
